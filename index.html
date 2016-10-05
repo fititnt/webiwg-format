@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <title>WebIWG markdown format</title>
+  <!--
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="webiwg-format.js"></script>
+  -->
+  <style>
+    textarea {
+      float: left;
+      width: 45%;
+      margin-left: 1%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>WebIWG markdown format</h1>
+  <textarea id="in">
+  </textarea>
+  <textarea id="out">
+  </textarea>
+
+
+  <script src="webiwg-format.js"></script>
+  <script>
+    var $ = document.querySelectorAll.bind(document);
+    $('#in')[0].addEventListener('change', function(ev) {
+      console.log(ev.target.value);
+    })
+  </script>
+
+</body>
+
+</html>
