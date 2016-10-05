@@ -13,23 +13,24 @@
       float: left;
       width: 45%;
       margin-left: 1%;
+      min-height: 500px;
     }
   </style>
 </head>
 
 <body>
   <h1>WebIWG markdown format</h1>
-  <textarea id="in">
-  </textarea>
-  <textarea id="out">
-  </textarea>
+
+  <textarea id="in"></textarea>
+  <textarea id="out"></textarea>
 
 
   <script src="webiwg-format.js"></script>
   <script>
     var $ = document.querySelectorAll.bind(document);
     $('#in')[0].addEventListener('change', function(ev) {
-      console.log(ev.target.value);
+      //console.log(ev.target.value);
+      $('#out')[0].value = IWG(ev.target.value);
     })
   </script>
 
