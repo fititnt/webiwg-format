@@ -16,11 +16,18 @@
       margin-left: 1%;
       min-height: 300px;
     }
+
+    #run {
+      margin: 1em;
+    }
   </style>
 </head>
 
 <body>
   <h1>WebIWG markdown format</h1>
+
+  <button id="run">Convert</button>
+  <button id="test">Example</button>
 
   <textarea id="in">### Introdução
 
@@ -46,11 +53,11 @@ itens do formulário.
   </textarea>
   <textarea id="out"></textarea>
 
-<!--
 
-Resultado desejado do texto de exemplo
+  <div id="example" style="display: none">
+    <p>Resultado desejado do texto de exemplo inicial</p>
 
-<textarea>### Introdução
+    <textarea>### Introdução
 
 Formulários são usados para muitos tipos de interações na web.
 Quando falamos sobre a acessibilidade de formulários,
@@ -69,14 +76,18 @@ Se quaisquer elementos de formulário são obrigatórios, não se esqueça de in
 Certifique-se de que a ordem em que os elementos de formulário são acessados seja lógica e fácil.
 Isto as vezes pode ser problemático se tabelas são usadas para controlar o layout de itens do formulário.
 </textarea>
-
--->
-
+  </div>
   <script src="webiwg-format.js"></script>
   <script>
     var $ = document.querySelectorAll.bind(document);
     $('#in')[0].addEventListener('change', function(ev) {
       $('#out')[0].value = IWGDebug(ev.target.value);
+    })
+    $('#run')[0].addEventListener('click', function(ev) {
+      $('#out')[0].value = IWGDebug($('#in')[0].value);
+    })
+    $('#test')[0].addEventListener('click', function(ev) {
+      $('#example')[0].style.display = '';
     })
   </script>
 
