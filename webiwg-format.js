@@ -1,7 +1,8 @@
 /**
  * TODO: refatorar (fititnt, 2016-10-04 23:42)
  */
-
+var _IWGmaxline = 120;
+var _IWGminsubtoken = 32;
 
 function IWGDebug(input) {
   var result = "", blocks = input.replace(/(\r\n\r\n|\n\n)/gm, "_😝_").split("_😝_");
@@ -15,24 +16,38 @@ function IWGDebug(input) {
 }
 
 function mdblockToSentences(block) {
-  var frases = block.replace(/([.;]+)/g, '$1§sep§').split('§sep§');
+  var result, frases = block.replace(/([.:;]+)/g, '$1§sep§').split('§sep§');
 
   frases = frases.map(function (el) {
-    return el.replace(/(\r\n|\n|\r)/gm, "").trim();
+    return el.replace(/(\r\n|\n|\r)/gm, " ").trim();
   });
 
-  console.log(frases, "aaa", mdblockToSentencesEventShorter(frases));
-  return mdblockToSentencesEventShorter(frases);
+  result = mdblockToSentencesEventShorter(frases);
+  result = mdblockToSentencesEventShorter(result, " (", -1, _IWGminsubtoken);
+
+  //console.log(frases, "aaa", mdblockToSentencesEventShorter(frases));
+  return result;
 }
 
-function mdblockToSentencesEventShorter(frases, splitchar = ", ") {
+function mdblockToSentencesEventShorter(frases, splitchar = ", ", pos = 1, mintoken = 0) {
   var novaFrases = [];
   for (let i = 0; i < frases.length; i++) {
-    if (frases[i].length > 80) {
+
+    //if (frases[i].length < mintoken) {
+    //  console.log('aeee', mintoken, frases[i].length);
+    //  return frases;
+    //}
+
+    if (frases[i].length > _IWGmaxline) {
       let t = 0, tokens = frases[i].split(splitchar);
       while (t < tokens.length - 1) {
-        tokens[t] += splitchar.trim();
-        t +=1;
+        if (pos > 0) {
+          tokens[t] += splitchar.trim();
+        } else {
+          tokens[t + 1] = splitchar.trim() + tokens[t + 1];
+        }
+
+        t += 1;
       }
 
       console.log("split", frases[i], "novo", tokens)
@@ -41,7 +56,6 @@ function mdblockToSentencesEventShorter(frases, splitchar = ", ") {
       novaFrases.push(frases[i]);
     }
   }
-
 
   return novaFrases;
 }
