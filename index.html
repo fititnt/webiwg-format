@@ -22,32 +22,60 @@
 <body>
   <h1>WebIWG markdown format</h1>
 
-  <textarea id="in">A web page containing JavaScript will typically be fully accessible if the
-functionality of the script is device independent (does not require only a mouse
-or only a keyboard) and the information (content) is available to assistive
-technologies. Unfortunately, there is no easy fix that can be applied to solve
-all accessibility problems associated with JavaScript. The only way to ensure
-JavaScript accessibility is by evaluating each pages that utilizes scripting and
-devising a unique solution to any accessibility problem found.
+  <textarea id="in">### Introdução
 
-We jointly published a number of articles on our web-site that often became
-go-to references then, and it seems a shame that they be lost to the vagaries of
-time; the original site long since gone. I have created an Archive section of
-this site to preserve those postings, and the following article from that time
-is one such. Please note that some of the information in this or other similar
-articles may be dated, or superseded by events in time: I am making no attempt
-to update these articles and am simply posting them as they existed when they
-were first written.
+Formulários são usados para muitos tipos de interações na web. Quando falamos sobre
+a acessibilidade de formulários, estamos normalmente nos referindo a sua acessibilidade
+às pessoas que utilizam leitores de tela ou navegação por teclados. Pessoas com
+outros tipos de deficiência são geralmente menos afetadas por formulários com defeito.
+Deve-se notar, no entanto, que todos se beneficiam de um formulário bem organizado,
+com grande usabilidade, especialmente aquelas pessoas com deficiências cognitivas.
+formulário.
+
+
+## Visão geral de acessibilidade em formulários
+
+Os formulários devem ser claros e intuitivos. Eles devem ser organizados de uma maneira
+lógica. Instruções, sugestões, campos de formulário obrigatórios, requisitos de
+formatação de campo, etc, devem ser claramente identificados para os usuários.
+Dê instruções claras sobre as informações desejadas. Se quaisquer elementos de
+formulário são obrigatórios, não se esqueça de indica-los. Certifique-se de que
+a ordem em que os elementos de formulário são acessados seja lógica e fácil. Isto
+as vezes pode ser problemático se tabelas são usadas para controlar o layout de
+itens do formulário.
   </textarea>
   <textarea id="out"></textarea>
 
+<!--
+
+Resultado desejado do texto de exemplo
+
+<textarea>### Introdução
+
+Formulários são usados para muitos tipos de interações na web.
+Quando falamos sobre a acessibilidade de formulários,
+estamos normalmente nos referindo a sua acessibilidade às pessoas que utilizam leitores de tela ou navegação por teclados.
+Pessoas com outros tipos de deficiência são geralmente menos afetadas por formulários com defeito.
+Deve-se notar, no entanto, que todos se beneficiam de um formulário bem organizado,
+com grande usabilidade, especialmente aquelas pessoas com deficiências cognitivas.
+
+### Certifique-se de que os formulários sejam lógicos e fáceis de usar
+
+Os formulários devem ser claros e intuitivos. Eles devem ser organizados de uma maneira lógica.
+Instruções, sugestões, campos de formulário obrigatórios, requisitos de formatação de campo,
+etc, devem ser claramente identificados para os usuários.
+Dê instruções claras sobre as informações desejadas.
+Se quaisquer elementos de formulário são obrigatórios, não se esqueça de indica-los.
+Certifique-se de que a ordem em que os elementos de formulário são acessados seja lógica e fácil.
+Isto as vezes pode ser problemático se tabelas são usadas para controlar o layout de itens do formulário.
+</textarea>
+
+-->
 
   <script src="webiwg-format.js"></script>
   <script>
     var $ = document.querySelectorAll.bind(document);
     $('#in')[0].addEventListener('change', function(ev) {
-      //console.log(ev.target.value);
-      //$('#out')[0].value = IWG(ev.target.value);
       $('#out')[0].value = IWGDebug(ev.target.value);
     })
   </script>
