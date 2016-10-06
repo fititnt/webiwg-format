@@ -4,19 +4,46 @@
 
 
 function IWGDebug(input) {
+  var result = "", blocks = input.replace(/(\r\n\r\n|\n\n)/gm, "_😝_").split("_😝_");
+  //console.log('aaa', blocks);
 
-  return mdblockToSentences(input).join("\r\n");
+  for (let i = 0; i < blocks.length; i++) {
+    result += mdblockToSentences(blocks[i]).join("\r\n") + "\r\n\r\n";
+  }
+
+  return result;
 }
 
 function mdblockToSentences(block) {
   var frases = block.replace(/([.;]+)/g, '$1§sep§').split('§sep§');
 
   frases = frases.map(function (el) {
-    return el.replace(/(\r\n|\n|\r)/gm, "");
+    return el.replace(/(\r\n|\n|\r)/gm, "").trim();
   });
 
-  console.log(frases)
-  return frases;
+  console.log(frases, "aaa", mdblockToSentencesEventShorter(frases));
+  return mdblockToSentencesEventShorter(frases);
+}
+
+function mdblockToSentencesEventShorter(frases, splitchar = ", ") {
+  var novaFrases = [];
+  for (let i = 0; i < frases.length; i++) {
+    if (frases[i].length > 80) {
+      let t = 0, tokens = frases[i].split(splitchar);
+      while (t < tokens.length - 1) {
+        tokens[t] += splitchar.trim();
+        t +=1;
+      }
+
+      console.log("split", frases[i], "novo", tokens)
+      novaFrases = novaFrases.concat(tokens);
+    } else {
+      novaFrases.push(frases[i]);
+    }
+  }
+
+
+  return novaFrases;
 }
 
 
