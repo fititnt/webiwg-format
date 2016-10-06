@@ -3,6 +3,23 @@
  */
 
 
+function IWGDebug(input) {
+
+  return mdblockToSentences(input).join("\r\n");
+}
+
+function mdblockToSentences(block) {
+  var frases = block.replace(/([.;]+)/g, '$1§sep§').split('§sep§');
+
+  frases = frases.map(function (el) {
+    return el.replace(/(\r\n|\n|\r)/gm, "");
+  });
+
+  console.log(frases)
+  return frases;
+}
+
+
 /**
  *
  */
@@ -18,7 +35,7 @@ function IWG(input) {
       lines[i] = temp[0];
       if (temp[1] === false) {
         i += 1;
-        if (i == lines.length +1) {
+        if (i == lines.length + 1) {
           lines.pop();
         }
       } else {

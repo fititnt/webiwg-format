@@ -38,7 +38,8 @@ devising a unique solution to any accessibility problem found.
     var $ = document.querySelectorAll.bind(document);
     $('#in')[0].addEventListener('change', function(ev) {
       //console.log(ev.target.value);
-      $('#out')[0].value = IWG(ev.target.value);
+      //$('#out')[0].value = IWG(ev.target.value);
+      $('#out')[0].value = IWGDebug(ev.target.value);
     })
   </script>
 
